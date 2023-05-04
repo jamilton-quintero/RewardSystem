@@ -1,0 +1,29 @@
+jasypt:
+    encryptor:
+        password: ${jasyptpwd:secretkey}
+        algorithm: PBEWithMD5AndDES
+
+server:
+    port: 8085
+    servlet:
+        context-path: /reward/v1
+        session:
+            timeout: 21600s
+    cors:
+        origins: ${ALLOW_ORIGINS}
+
+spring:
+    datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        type: com.zaxxer.hikari.HikariDataSource
+        url: jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}
+        username: ${DB_USERNAME}
+        password: ${DB_PASSWORD}
+
+    flyway:
+        url: jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}
+        user: ${DB_USERNAME}
+        password: ${DB_PASSWORD}
+        locations: classpath:db/migration
+        baselineOnMigrate: true
+

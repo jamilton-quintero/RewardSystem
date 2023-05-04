@@ -1,0 +1,44 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'jacoco'
+
+group = 'com.jamiltonquintero'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(8))
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    implementation project(':domain')
+    implementation project.ext.springtxt
+    implementation project.ext.log4j
+
+    implementation project.ext.springbootweb
+    compileOnly project.ext.lombok
+    annotationProcessor project.ext.lombok
+
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled true
+    }
+    additionalSourceDirs files("../application/src/main/java")
+    additionalClassDirs files("../application/build/classes/java/main")
+}
+
+test {
+    systemProperty "spring.profiles.active", System.properties['spring.profiles.active']
+
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}

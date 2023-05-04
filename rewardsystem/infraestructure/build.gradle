@@ -1,0 +1,75 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'jacoco'
+
+group = 'com.jamiltonquintero'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(8))
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    testImplementation project.ext.h2
+    testImplementation project.ext.springboottest
+    implementation project.ext.springbootweb
+    //implementation project.ext.swagger
+    implementation project.ext.springbootjpa
+
+    implementation project.ext.glassfish
+    implementation project.ext.jakarta
+
+    compileOnly project.ext.lombok
+    annotationProcessor project.ext.lombok
+//    implementation project.ext.mapstruct
+//    annotationProcessor  project.ext.mapstructprocessor
+
+
+
+    implementation project.ext.apachecommons
+    runtimeOnly project.ext.db
+
+    implementation project.ext.springbootjasypt
+
+    testImplementation project.ext.flywaytest
+    implementation project.ext.flyway
+    implementation project.ext.actuator
+
+    implementation project.ext.aop
+
+    implementation project(':domain')
+    implementation project(':application')
+
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.12.7.1'
+
+    implementation project.ext.jwtapi
+    runtimeOnly project.ext.jwtimpl
+    runtimeOnly project.ext.jwtjackson
+
+
+    implementation project.ext.log4j
+    testImplementation project.ext.ulisesbocchio
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled true
+    }
+    additionalSourceDirs files("../application/src/main/java")
+    additionalClassDirs files("../application/build/classes/java/main")
+}
+
+test {
+    systemProperty "spring.profiles.active", System.properties['spring.profiles.active']
+
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}

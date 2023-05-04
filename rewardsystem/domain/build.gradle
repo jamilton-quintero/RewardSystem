@@ -1,0 +1,54 @@
+apply plugin: 'java'
+apply plugin: 'jacoco'
+apply plugin: 'info.solidsoft.pitest'
+
+group = 'com.jamiltonquintero'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(8))
+    }
+}
+
+repositories {
+
+    mavenCentral()
+}
+
+dependencies {
+
+    testImplementation project.ext.junit5
+    implementation project.ext.junit5
+    testImplementation project.ext.mockito
+    implementation project.ext.log4j
+
+    compileOnly project.ext.lombok
+    annotationProcessor project.ext.lombok
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled true
+    }
+}
+
+pitest {
+    testPlugin = 'junit5'
+    junit5PluginVersion = '0.14'
+    testSourceSets = [sourceSets.test]
+    mainSourceSets = [sourceSets.main]
+    useClasspathFile = true
+    excludedClasses = ['com.xm.dominio.**.Dto*']
+
+    withHistory = true
+    failWhenNoMutations = false
+    timestampedReports = false
+    mutationThreshold = 80
+}
+
+test {
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
