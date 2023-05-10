@@ -4,11 +4,11 @@ import com.jamiltonquintero.company.adapter.CompanyJpaRepository;
 import com.jamiltonquintero.company.adapter.mapper.CompanyDboMapper;
 import com.jamiltonquintero.company.model.Company;
 import com.jamiltonquintero.company.port.dao.CompanyDao;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-@Repository
+@Service
 public class CompanyDaoImpl implements CompanyDao {
 
     private final CompanyJpaRepository companyJpaRepository;

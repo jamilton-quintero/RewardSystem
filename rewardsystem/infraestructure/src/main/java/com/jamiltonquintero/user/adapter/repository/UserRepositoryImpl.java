@@ -3,11 +3,12 @@ package com.jamiltonquintero.user.adapter.repository;
 import com.jamiltonquintero.user.adapter.UserJpaRepository;
 import com.jamiltonquintero.user.adapter.entity.UserEntity;
 import com.jamiltonquintero.user.adapter.mapper.UserDboMapper;
+import com.jamiltonquintero.user.model.entity.User;
 import com.jamiltonquintero.user.model.entity.UserToRegister;
 import com.jamiltonquintero.user.port.repository.UserRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
-@Repository
+@Service
 public class UserRepositoryImpl implements UserRepository {
 
     private final UserJpaRepository userJpaRepository;
@@ -22,6 +23,17 @@ public class UserRepositoryImpl implements UserRepository {
         UserEntity userDbo = userDboMapper.toDboRegister(user);
         UserEntity savedUser = userJpaRepository.save(userDbo);
         return savedUser.getId();
+    }
+
+    @Override
+    public void edit(User user) {
+        UserEntity userDbo = userDboMapper.toDbo(user);
+        userJpaRepository.save(userDbo);
+    }
+
+    @Override
+    public void delete(Long id) {
+        userJpaRepository.deleteById(id);
     }
 
 }

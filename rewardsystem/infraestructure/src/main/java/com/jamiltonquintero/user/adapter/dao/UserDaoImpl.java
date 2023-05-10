@@ -4,13 +4,13 @@ import com.jamiltonquintero.user.adapter.UserJpaRepository;
 import com.jamiltonquintero.user.adapter.mapper.UserDboMapper;
 import com.jamiltonquintero.user.model.entity.User;
 import com.jamiltonquintero.user.port.dao.UserDao;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@Repository
+@Service
 public class UserDaoImpl implements UserDao {
 
     private final UserJpaRepository userJpaRepository;
@@ -22,10 +22,15 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-
     public Optional<User> getById(Long id) {
         return userJpaRepository.findById(id)
                 .map(userDboMapper::toDomain);
+    }
+
+    @Override
+    public Optional<User> getByIdWhitCompanies(Long id) {
+        return userJpaRepository.findById(id)
+                .map(userDboMapper::toDomainWhitCompanies);
     }
 
     @Override
@@ -40,4 +45,11 @@ public class UserDaoImpl implements UserDao {
                 .stream()
                 .map(userDboMapper::toDomain).collect(Collectors.toList());
     }
+
+    @Override
+    public Optional<User> findByEmail(String email) {
+        return userJpaRepository.findByEmail(email)
+                .map(userDboMapper::toDomain);
+    }
+
 }

@@ -8,6 +8,8 @@ import java.util.Optional;
 public interface UserDao {
 
     Optional<User> getById(Long id);
+    Optional<User> getByIdWhitCompanies(Long id);
     Optional<User> getByIdentification(String identification);
     List<User> getByCompany(Long companyId);
+    Optional<User> findByEmail(String email);
 }

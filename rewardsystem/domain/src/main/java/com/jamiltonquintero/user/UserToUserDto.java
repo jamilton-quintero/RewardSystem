@@ -1,6 +1,7 @@
 package com.jamiltonquintero.user;
 
 import com.jamiltonquintero.user.model.dto.UserDto;
+import com.jamiltonquintero.user.model.dto.UserSummaryDto;
 import com.jamiltonquintero.user.model.entity.User;
 
 public class UserToUserDto {

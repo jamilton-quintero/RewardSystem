@@ -5,9 +5,9 @@ import com.jamiltonquintero.company.adapter.CompanyJpaRepository;
 import com.jamiltonquintero.company.adapter.mapper.CompanyDboMapper;
 import com.jamiltonquintero.company.model.Company;
 import com.jamiltonquintero.company.port.repository.CompanyRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
-@Repository
+@Service
 public class CompanyRepositoryImpl implements CompanyRepository {
 
     private final CompanyJpaRepository companyJpaRepository;

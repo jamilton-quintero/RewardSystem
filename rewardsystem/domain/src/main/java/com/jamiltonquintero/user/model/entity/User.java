@@ -22,16 +22,8 @@ public class User {
     private Integer totalPoints;
     private List<Company> companies;
 
-    public User(String firstName, String lastName, String email, String identification, List<Company> companies) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.identification = identification;
-        this.totalPoints = INITIAL_POINTS;
-        this.companies = companies;
-    }
-
-    public User(String firstName, String lastName, String email, String identification,Integer totalPoints) {
+    public User(Long id, String firstName, String lastName, String email, String identification, Integer totalPoints) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -39,6 +31,21 @@ public class User {
         this.totalPoints = totalPoints;
     }
 
+    public User(String firstName, String lastName, String email, String identification) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.identification = identification;
+    }
 
+    public void setFieldsToEdit(String firstName,
+                                String lastName,
+                                String email,
+                                String identification){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.identification = identification;
+    }
 
 }

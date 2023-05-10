@@ -60,4 +60,5 @@ public class UserEntity {
         this.companies = companies;
     }
 
+
 }

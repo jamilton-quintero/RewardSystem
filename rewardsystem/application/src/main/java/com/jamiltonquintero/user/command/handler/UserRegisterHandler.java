@@ -1,7 +1,7 @@
 package com.jamiltonquintero.user.command.handler;
 
 import com.jamiltonquintero.user.command.UserRegisterCommand;
-import com.jamiltonquintero.user.command.factory.UserRegisterFactory;
+import com.jamiltonquintero.user.command.factory.UserFactory;
 import com.jamiltonquintero.user.service.UserRegisterService;
 import org.springframework.stereotype.Component;
 
@@ -9,16 +9,16 @@ import org.springframework.stereotype.Component;
 public class UserRegisterHandler {
 
     private final UserRegisterService userRegisterService;
-    private final UserRegisterFactory userRegisterFactory;
+    private final UserFactory userFactory;
 
-    public UserRegisterHandler(UserRegisterService userRegisterService, UserRegisterFactory userRegisterFactory) {
+    public UserRegisterHandler(UserRegisterService userRegisterService, UserFactory userFactory) {
         this.userRegisterService = userRegisterService;
-        this.userRegisterFactory = userRegisterFactory;
+        this.userFactory = userFactory;
     }
 
 
     public Long execute(UserRegisterCommand userRegisterCommand, Long id){
-        return userRegisterService.execute(userRegisterFactory.execute(userRegisterCommand), id);
+        return userRegisterService.execute(userFactory.execute(userRegisterCommand), id);
     }
 
 }

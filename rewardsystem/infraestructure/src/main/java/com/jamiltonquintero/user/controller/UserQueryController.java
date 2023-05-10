@@ -1,7 +1,8 @@
 package com.jamiltonquintero.user.controller;
 
 import com.jamiltonquintero.user.model.dto.UserDto;
-import com.jamiltonquintero.user.query.UserByCompanyHandler;
+import com.jamiltonquintero.user.model.dto.UserSummaryDto;
+import com.jamiltonquintero.user.query.UserSummaryAllByCompanyHandler;
 import com.jamiltonquintero.user.query.UserByIdHandler;
 import com.jamiltonquintero.user.query.UserByIdentificationHandler;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,11 +19,11 @@ public class UserQueryController {
 
     private final UserByIdHandler userByIdHandler;
     private final UserByIdentificationHandler userByIdentificationHandler;
-    private final UserByCompanyHandler userByCompanyHandler;
-    public UserQueryController(UserByIdHandler userByIdHandler, UserByIdentificationHandler userByIdentificationHandler, UserByCompanyHandler userByCompanyHandler) {
+    private final UserSummaryAllByCompanyHandler userSummaryAllByCompanyHandler;
+    public UserQueryController(UserByIdHandler userByIdHandler, UserByIdentificationHandler userByIdentificationHandler, UserSummaryAllByCompanyHandler userSummaryAllByCompanyHandler) {
         this.userByIdHandler = userByIdHandler;
         this.userByIdentificationHandler = userByIdentificationHandler;
-        this.userByCompanyHandler = userByCompanyHandler;
+        this.userSummaryAllByCompanyHandler = userSummaryAllByCompanyHandler;
     }
 
     @GetMapping("/{id}")
@@ -36,8 +37,8 @@ public class UserQueryController {
     }
 
     @GetMapping("/companies/{companyId}")
-    public List<UserDto> getUsersByCompany(@PathVariable Long companyId) {
-        return userByCompanyHandler.execute(companyId);
+    public List<UserSummaryDto> getUsersByCompany(@PathVariable Long companyId) {
+        return userSummaryAllByCompanyHandler.execute(companyId);
     }
 
 }
