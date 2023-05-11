@@ -16,8 +16,9 @@ public class CompanySubRewardBean {
 
     @Bean
     public SubRewardRegisterService subRewardRegisterService(
-            SubRewardRepository rewardRepository){
-        return new SubRewardRegisterService(rewardRepository);
+            SubRewardRepository rewardRepository,
+            CompanyDao companyDao){
+        return new SubRewardRegisterService(rewardRepository, companyDao);
     }
 
     @Bean

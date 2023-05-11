@@ -58,7 +58,7 @@ public class RewardDboMapper {
         return new Reward(
                 entity.getId(),
                 entity.getPointsToRedeem(),
-                entity.getAvailableRewards(),
+                entity.getName(),
                 entity.getDailyPointsLimit(),
                 entity.getWeeklyPointsLimit(),
                 entity.getPointsAccumulatedMessage(),

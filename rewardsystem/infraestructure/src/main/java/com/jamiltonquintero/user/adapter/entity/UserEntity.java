@@ -43,7 +43,7 @@ public class UserEntity {
     private String identification;
     @Column(name = "total_points")
     private Integer totalPoints;
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "user_company",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),

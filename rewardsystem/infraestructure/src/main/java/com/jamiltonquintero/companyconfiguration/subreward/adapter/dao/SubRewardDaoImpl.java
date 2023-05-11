@@ -38,11 +38,10 @@ public class SubRewardDaoImpl implements SubRewardDao {
 
     @Override
     public List<SubReward> getAllByCompany(Long companyId) {
-        return null;
-//        return subRewardJpaRepository.findAllByCompanyId(companyId)
-//                .stream()
-//                .map(subRewardDboMapper::toDomain)
-//                .collect(Collectors.toList());
+        return subRewardJpaRepository.findAllByCompanyId(companyId)
+                .stream()
+                .map(subRewardDboMapper::toDomain)
+                .collect(Collectors.toList());
     }
 
 }

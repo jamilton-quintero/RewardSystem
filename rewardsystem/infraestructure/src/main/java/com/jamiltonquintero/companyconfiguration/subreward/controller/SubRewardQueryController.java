@@ -28,7 +28,7 @@ public class SubRewardQueryController {
         return subRewardByCompanyHandler.execute(id);
     }
 
-    @GetMapping("/companies/{companyId}/")
+    @GetMapping("/companies/{companyId}")
     public List<SubRewardDto> getAllByCompanyAndMainReward(@PathVariable long companyId){
         return subRewardAllByCompanyHandler.execute(companyId);
     }

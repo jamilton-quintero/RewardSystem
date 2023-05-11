@@ -1,6 +1,7 @@
 package com.jamiltonquintero.company.adapter.entity;
 
 import com.jamiltonquintero.companyconfiguration.reward.adapter.entity.RewardEntity;
+import com.jamiltonquintero.companyconfiguration.subreward.adapter.entity.SubRewardEntity;
 import com.jamiltonquintero.user.adapter.entity.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -45,7 +46,9 @@ public class CompanyEntity {
     @ManyToMany(mappedBy = "companies", fetch = FetchType.LAZY)
     private Set<UserEntity> users;
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<RewardEntity> configurations = new ArrayList<>();
+    private List<RewardEntity> rewards = new ArrayList<>();
+    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<SubRewardEntity> subRewards = new ArrayList<>();
 
     public CompanyEntity(String name, String email, String password, LocalDate creationDate) {
         this.name = name;

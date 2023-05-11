@@ -42,7 +42,8 @@ public class SubRewardEditService {
         return  new SubReward(
                 lastSubReward.getId(),
                 newSubReward.getPointsToRedeem(),
-                newSubReward.getName());
+                newSubReward.getName(),
+                newSubReward.getCompany());
     }
 
 }

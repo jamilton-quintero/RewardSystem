@@ -25,7 +25,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Getter
 @Setter
-@Table(name = "company_configuration")
+@Table(name = "reward")
 @Entity
 public class RewardEntity {
 
@@ -35,8 +35,8 @@ public class RewardEntity {
     private Long id;
     @Column(name = "points_to_redeem")
     private Integer pointsToRedeem;
-    @Column(name = "available_rewards")
-    private String availableRewards;
+    @Column(name = "reward_name")
+    private String name;
     @Column(name = "daily_points_limit")
     private Integer dailyPointsLimit;
     @Column(name = "weekly_points_limit")
@@ -52,16 +52,16 @@ public class RewardEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "company_id")
     private CompanyEntity company;
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
-            name = "user_company",
-            joinColumns = @JoinColumn(name = "company_configuration_id", referencedColumnName = "id"),
+            name = "reward_subreward",
+            joinColumns = @JoinColumn(name = "reward_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "sub_reward_id", referencedColumnName = "id")
     )
     private Set<SubRewardEntity> subRewards;
 
     public RewardEntity(Integer pointsToRedeem,
-                        String availableRewards,
+                        String name,
                         Integer dailyPointsLimit,
                         Integer weeklyPointsLimit,
                         String pointsAccumulatedMessage,
@@ -70,7 +70,7 @@ public class RewardEntity {
                         LocalDate expirationDate,
                         CompanyEntity company) {
         this.pointsToRedeem = pointsToRedeem;
-        this.availableRewards = availableRewards;
+        this.name = name;
         this.dailyPointsLimit = dailyPointsLimit;
         this.weeklyPointsLimit = weeklyPointsLimit;
         this.pointsAccumulatedMessage = pointsAccumulatedMessage;
