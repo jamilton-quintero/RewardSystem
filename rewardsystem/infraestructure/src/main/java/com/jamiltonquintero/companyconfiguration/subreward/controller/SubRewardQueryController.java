@@ -1,6 +1,7 @@
 package com.jamiltonquintero.companyconfiguration.subreward.controller;
 
 import com.jamiltonquintero.companyconfiguration.subreward.model.dto.SubRewardDto;
+import com.jamiltonquintero.companyconfiguration.subreward.query.SubRewardAllByCompanyAndRewardHandler;
 import com.jamiltonquintero.companyconfiguration.subreward.query.SubRewardAllByCompanyHandler;
 import com.jamiltonquintero.companyconfiguration.subreward.query.SubRewardByCompanyHandler;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -17,10 +18,14 @@ public class SubRewardQueryController {
 
     private final SubRewardByCompanyHandler subRewardByCompanyHandler;
     private final SubRewardAllByCompanyHandler subRewardAllByCompanyHandler;
+    private final SubRewardAllByCompanyAndRewardHandler subRewardAllByCompanyAndRewardHandler;
 
-    public SubRewardQueryController(SubRewardByCompanyHandler subRewardByCompanyHandler, SubRewardAllByCompanyHandler subRewardAllByCompanyHandler) {
+    public SubRewardQueryController(SubRewardByCompanyHandler subRewardByCompanyHandler,
+                                    SubRewardAllByCompanyHandler subRewardAllByCompanyHandler,
+                                    SubRewardAllByCompanyAndRewardHandler subRewardAllByCompanyAndRewardHandler) {
         this.subRewardByCompanyHandler = subRewardByCompanyHandler;
         this.subRewardAllByCompanyHandler = subRewardAllByCompanyHandler;
+        this.subRewardAllByCompanyAndRewardHandler = subRewardAllByCompanyAndRewardHandler;
     }
 
     @GetMapping("/{id}")
@@ -29,8 +34,13 @@ public class SubRewardQueryController {
     }
 
     @GetMapping("/companies/{companyId}")
-    public List<SubRewardDto> getAllByCompanyAndMainReward(@PathVariable long companyId){
+    public List<SubRewardDto> getAllByCompany(@PathVariable long companyId){
         return subRewardAllByCompanyHandler.execute(companyId);
+    }
+
+    @GetMapping("/companies/{companyId}/rewards/{rewardId}")
+    public List<SubRewardDto> getAllByCompanyAndReward(@PathVariable long companyId, @PathVariable long rewardId){
+        return subRewardAllByCompanyAndRewardHandler.execute(companyId, rewardId);
     }
 
 }

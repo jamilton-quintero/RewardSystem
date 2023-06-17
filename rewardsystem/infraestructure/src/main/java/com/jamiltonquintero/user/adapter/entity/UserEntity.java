@@ -1,9 +1,8 @@
 package com.jamiltonquintero.user.adapter.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jamiltonquintero.company.adapter.entity.CompanyEntity;
+import com.jamiltonquintero.companyconfiguration.reward.adapter.entity.RewardEntity;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,7 +17,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import java.util.List;
 import java.util.Set;
 
 @NoArgsConstructor
@@ -50,6 +48,13 @@ public class UserEntity {
             inverseJoinColumns = @JoinColumn(name = "company_id", referencedColumnName = "id")
     )
     private Set<CompanyEntity> companies;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "user_reward",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "reward_id", referencedColumnName = "id")
+    )
+    private Set<RewardEntity> rewards;
 
     public UserEntity(String firstName, String lastName, String email, String identification, Integer totalPoints, Set<CompanyEntity> companies) {
         this.firstName = firstName;

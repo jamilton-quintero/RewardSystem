@@ -8,6 +8,9 @@ import com.jamiltonquintero.companyconfiguration.reward.service.RewardByCompanyS
 import com.jamiltonquintero.companyconfiguration.reward.service.RewardByIdService;
 import com.jamiltonquintero.companyconfiguration.reward.service.RewardEditService;
 import com.jamiltonquintero.companyconfiguration.reward.service.RewardRegisterService;
+import com.jamiltonquintero.companyconfiguration.reward.service.RewardWithSubRewardRegisterService;
+import com.jamiltonquintero.companyconfiguration.subreward.port.dao.SubRewardDao;
+import com.jamiltonquintero.companyconfiguration.subreward.service.SubRewardAllByCompanyAndRewardService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -44,6 +47,26 @@ public class CompanyRewardBean {
             RewardRepository rewardRepository,
             RewardDao rewardDao){
         return new RewardEditService(rewardRepository, rewardDao);
+    }
+
+    @Bean
+    public RewardWithSubRewardRegisterService rewardWithSubRewardRegisterService(
+            RewardRepository rewardRepository,
+            CompanyDao companyDao,
+            SubRewardDao subRewardDao){
+
+        return new RewardWithSubRewardRegisterService(
+                rewardRepository,
+                companyDao,
+                subRewardDao
+        );
+    }
+
+    @Bean
+    public SubRewardAllByCompanyAndRewardService subRewardAllByCompanyAndRewardService(
+            SubRewardDao subRewardDao
+    ){
+        return new SubRewardAllByCompanyAndRewardService(subRewardDao);
     }
 
 }

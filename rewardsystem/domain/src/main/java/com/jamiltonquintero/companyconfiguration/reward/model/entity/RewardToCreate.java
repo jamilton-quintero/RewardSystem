@@ -4,6 +4,7 @@ import com.jamiltonquintero.company.model.Company;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
@@ -12,8 +13,9 @@ import java.time.LocalDate;
 @Getter
 public class RewardToCreate {
 
+    @Setter
     private Integer pointsToRedeem;
-    private String availableRewards;
+    private String name;
     private Integer dailyPointsLimit;
     private Integer weeklyPointsLimit;
     private String pointsAccumulatedMessage;
@@ -23,7 +25,7 @@ public class RewardToCreate {
     private Company company;
 
     public RewardToCreate(Integer pointsToRedeem,
-                          String availableRewards,
+                          String name,
                           Integer dailyPointsLimit,
                           Integer weeklyPointsLimit,
                           String pointsAccumulatedMessage,
@@ -32,7 +34,7 @@ public class RewardToCreate {
                           LocalDate expirationDate) {
 
         this.pointsToRedeem = pointsToRedeem;
-        this.availableRewards = availableRewards;
+        this.name = name;
         this.dailyPointsLimit = dailyPointsLimit;
         this.weeklyPointsLimit = weeklyPointsLimit;
         this.pointsAccumulatedMessage = pointsAccumulatedMessage;

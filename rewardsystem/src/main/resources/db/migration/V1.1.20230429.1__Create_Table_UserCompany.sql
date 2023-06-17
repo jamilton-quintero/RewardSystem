@@ -6,3 +6,5 @@ CREATE TABLE user_company (
   FOREIGN KEY (company_id) REFERENCES company(id)
 );
 
+
+

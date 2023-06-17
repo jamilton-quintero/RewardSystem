@@ -12,7 +12,7 @@ import java.time.LocalDate;
 public class RewardEditCommand {
 
     private Integer pointsToRedeem;
-    private String availableRewards;
+    private String name;
     private Integer dailyPointsLimit;
     private Integer weeklyPointsLimit;
     private String pointsAccumulatedMessage;

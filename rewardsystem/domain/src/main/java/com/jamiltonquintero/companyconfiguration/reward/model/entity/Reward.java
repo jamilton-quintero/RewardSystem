@@ -14,7 +14,8 @@ public class Reward {
 
     private Long id;
     private Integer pointsToRedeem;
-    private String availableRewards;
+    private String name;
+    private boolean multiReward;
     private Integer dailyPointsLimit;
     private Integer weeklyPointsLimit;
     private String pointsAccumulatedMessage;
@@ -24,7 +25,8 @@ public class Reward {
     private Company company;
 
     public Reward(Integer pointsToRedeem,
-                  String availableRewards,
+                  String name,
+                  boolean multiReward,
                   Integer dailyPointsLimit,
                   Integer weeklyPointsLimit,
                   String pointsAccumulatedMessage,
@@ -33,7 +35,8 @@ public class Reward {
                   LocalDate expirationDate) {
 
         this.pointsToRedeem = pointsToRedeem;
-        this.availableRewards = availableRewards;
+        this.name = name;
+        this.multiReward = multiReward;
         this.dailyPointsLimit = dailyPointsLimit;
         this.weeklyPointsLimit = weeklyPointsLimit;
         this.pointsAccumulatedMessage = pointsAccumulatedMessage;

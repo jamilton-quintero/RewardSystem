@@ -7,7 +7,9 @@ import java.util.Optional;
 
 public interface SubRewardDao {
 
-    Optional<SubReward> getById(Long id);
-    Optional<SubReward> getByCompany(Long companyId);
-    List<SubReward> getAllByCompany(Long companyId);
+    Optional<SubReward> getById(long id);
+    Optional<SubReward> getByCompany(long companyId);
+    List<SubReward> getAllByCompany(long companyId);
+    List<SubReward> getByIds(List<Long> ids);
+    List<SubReward> getAllByCompanyAndReward(long companyId, long rewardId);
 }

@@ -2,6 +2,7 @@ package com.jamiltonquintero.companyconfiguration.reward.adapter.entity;
 
 import com.jamiltonquintero.company.adapter.entity.CompanyEntity;
 import com.jamiltonquintero.companyconfiguration.subreward.adapter.entity.SubRewardEntity;
+import com.jamiltonquintero.user.adapter.entity.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -37,6 +38,8 @@ public class RewardEntity {
     private Integer pointsToRedeem;
     @Column(name = "reward_name")
     private String name;
+    @Column(name = "multi_rewards")
+    private boolean multiReward;
     @Column(name = "daily_points_limit")
     private Integer dailyPointsLimit;
     @Column(name = "weekly_points_limit")
@@ -60,6 +63,9 @@ public class RewardEntity {
     )
     private Set<SubRewardEntity> subRewards;
 
+    @ManyToMany(mappedBy = "rewards", fetch = FetchType.LAZY)
+    private Set<UserEntity> users;
+
     public RewardEntity(Integer pointsToRedeem,
                         String name,
                         Integer dailyPointsLimit,
@@ -79,4 +85,30 @@ public class RewardEntity {
         this.expirationDate = expirationDate;
         this.company = company;
     }
+
+    public RewardEntity(Integer pointsToRedeem,
+                        String name,
+                        Integer dailyPointsLimit,
+                        Integer weeklyPointsLimit,
+                        String pointsAccumulatedMessage,
+                        String redemptionMessage,
+                        Integer pointsRange,
+                        LocalDate expirationDate,
+                        CompanyEntity company,
+                        Set<SubRewardEntity> subRewards) {
+
+        this.pointsToRedeem = pointsToRedeem;
+        this.name = name;
+        this.dailyPointsLimit = dailyPointsLimit;
+        this.weeklyPointsLimit = weeklyPointsLimit;
+        this.pointsAccumulatedMessage = pointsAccumulatedMessage;
+        this.redemptionMessage = redemptionMessage;
+        this.pointsRange = pointsRange;
+        this.expirationDate = expirationDate;
+        this.company = company;
+        this.subRewards = subRewards;
+        this.multiReward = true;
+    }
+
+
 }

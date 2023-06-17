@@ -3,6 +3,8 @@ package com.jamiltonquintero.user.adapter.mapper;
 import com.jamiltonquintero.company.adapter.entity.CompanyEntity;
 import com.jamiltonquintero.company.adapter.mapper.CompanyDboMapper;
 import com.jamiltonquintero.company.model.Company;
+import com.jamiltonquintero.companyconfiguration.reward.adapter.entity.RewardEntity;
+import com.jamiltonquintero.companyconfiguration.reward.adapter.mapper.RewardDboMapper;
 import com.jamiltonquintero.user.adapter.entity.UserEntity;
 import com.jamiltonquintero.user.model.entity.User;
 import com.jamiltonquintero.user.model.entity.UserToRegister;
@@ -17,9 +19,10 @@ import java.util.stream.Collectors;
 public class UserDboMapper {
 
     private final CompanyDboMapper companyDboMapper;
-
-    public UserDboMapper(CompanyDboMapper companyDboMapper) {
+    private final RewardDboMapper rewardDboMapper;
+    public UserDboMapper(CompanyDboMapper companyDboMapper, RewardDboMapper rewardDboMapper) {
         this.companyDboMapper = companyDboMapper;
+        this.rewardDboMapper = rewardDboMapper;
     }
 
     public UserEntity toDboRegister(UserToRegister domain) {
@@ -48,8 +51,11 @@ public class UserDboMapper {
         Set<CompanyEntity> companies = domain.getCompanies().stream().map(companyDboMapper::toDbo)
                 .collect(Collectors.toSet());
 
+        Set<RewardEntity> rewards = domain.getRewards().stream().map(rewardDboMapper::toDbo)
+                .collect(Collectors.toSet());
+
         return new UserEntity(domain.getId(),domain.getFirstName(), domain.getLastName(), domain.getEmail(),
-                domain.getIdentification(),domain.getTotalPoints(), companies);
+                domain.getIdentification(),domain.getTotalPoints(), companies, rewards);
     }
 
     public User toDomain(UserEntity entity) {

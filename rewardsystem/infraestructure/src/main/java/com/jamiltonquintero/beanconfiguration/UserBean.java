@@ -1,8 +1,10 @@
 package com.jamiltonquintero.beanconfiguration;
 
 import com.jamiltonquintero.company.port.dao.CompanyDao;
+import com.jamiltonquintero.companyconfiguration.reward.port.dao.RewardDao;
 import com.jamiltonquintero.user.port.dao.UserDao;
 import com.jamiltonquintero.user.port.repository.UserRepository;
+import com.jamiltonquintero.user.service.UserAddRewardsService;
 import com.jamiltonquintero.user.service.UserSummaryAllByCompanyService;
 import com.jamiltonquintero.user.service.UserByIdService;
 import com.jamiltonquintero.user.service.UserByIdentificationService;
@@ -45,6 +47,16 @@ public class UserBean {
             UserDao userDao){
 
         return new UserEditService(userRepository, userDao);
+    }
+
+    @Bean
+    public UserAddRewardsService userAddRewardsService(
+            UserRepository userRepository,
+            UserDao userDao,
+            RewardDao rewardDao){
+
+        return new UserAddRewardsService(userRepository, userDao,rewardDao);
+
     }
 
 }

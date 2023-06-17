@@ -13,7 +13,8 @@ public class RewardDto {
 
     private Long id;
     private Integer pointsToRedeem;
-    private String availableRewards;
+    private String name;
+    private boolean multiReward;
     private Integer dailyPointsLimit;
     private Integer weeklyPointsLimit;
     private String pointsAccumulatedMessage;

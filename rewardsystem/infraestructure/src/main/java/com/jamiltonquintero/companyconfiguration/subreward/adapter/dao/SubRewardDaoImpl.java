@@ -24,21 +24,37 @@ public class SubRewardDaoImpl implements SubRewardDao {
 
     @Override
 
-    public Optional<SubReward> getById(Long id) {
+    public Optional<SubReward> getById(long id) {
         return subRewardJpaRepository.findById(id)
                 .map(subRewardDboMapper::toDomain);
     }
 
     @Override
-    public Optional<SubReward> getByCompany(Long companyId) {
+    public Optional<SubReward> getByCompany(long companyId) {
         return null;
 //        return subRewardJpaRepository.findByCompanyId(companyId)
 //                .map(subRewardDboMapper::toDomain);
     }
 
     @Override
-    public List<SubReward> getAllByCompany(Long companyId) {
+    public List<SubReward> getAllByCompany(long companyId) {
         return subRewardJpaRepository.findAllByCompanyId(companyId)
+                .stream()
+                .map(subRewardDboMapper::toDomain)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<SubReward> getByIds(List<Long> ids) {
+        return subRewardJpaRepository.findAllByIdIn(ids)
+                .stream()
+                .map(subRewardDboMapper::toDomain)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<SubReward> getAllByCompanyAndReward(long companyId, long rewardId) {
+        return subRewardJpaRepository.findAllByCompanyIdAndRewardsId(companyId, rewardId)
                 .stream()
                 .map(subRewardDboMapper::toDomain)
                 .collect(Collectors.toList());

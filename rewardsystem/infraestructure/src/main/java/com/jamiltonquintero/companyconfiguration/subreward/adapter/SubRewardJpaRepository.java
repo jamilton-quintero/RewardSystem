@@ -9,5 +9,7 @@ public interface SubRewardJpaRepository extends JpaRepository<SubRewardEntity, L
 
     //Optional<SubRewardEntity> findByCompanyId(Long companyId);
     List<SubRewardEntity> findAllByCompanyId(Long companyId);
+    List<SubRewardEntity> findAllByIdIn(List<Long> ids);
+    List<SubRewardEntity> findAllByCompanyIdAndRewardsId(Long companyId, Long rewardId);
 
 }

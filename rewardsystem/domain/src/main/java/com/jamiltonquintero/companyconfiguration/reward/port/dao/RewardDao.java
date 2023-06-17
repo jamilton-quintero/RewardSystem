@@ -10,4 +10,5 @@ public interface RewardDao {
     Optional<Reward> getById(Long id);
     Optional<Reward> getByCompany(Long companyId);
     List<Reward> getAllByCompany(Long companyId);
+    List<Reward> getByIds(List<Long> rewardsIds);
 }

@@ -11,13 +11,13 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class RewardnDaoImpl implements RewardDao {
+public class RewardDaoImpl implements RewardDao {
 
 
     private final RewardJpaRepository rewardJpaRepository;
     private final RewardDboMapper rewardDboMapper;
 
-    public RewardnDaoImpl(RewardJpaRepository rewardJpaRepository, RewardDboMapper rewardDboMapper) {
+    public RewardDaoImpl(RewardJpaRepository rewardJpaRepository, RewardDboMapper rewardDboMapper) {
         this.rewardJpaRepository = rewardJpaRepository;
         this.rewardDboMapper = rewardDboMapper;
     }
@@ -38,6 +38,14 @@ public class RewardnDaoImpl implements RewardDao {
     @Override
     public List<Reward> getAllByCompany(Long companyId) {
         return rewardJpaRepository.findAllByCompanyId(companyId)
+                .stream()
+                .map(rewardDboMapper::toDomain)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Reward> getByIds(List<Long> rewardsIds) {
+        return rewardJpaRepository.findAllById(rewardsIds)
                 .stream()
                 .map(rewardDboMapper::toDomain)
                 .collect(Collectors.toList());

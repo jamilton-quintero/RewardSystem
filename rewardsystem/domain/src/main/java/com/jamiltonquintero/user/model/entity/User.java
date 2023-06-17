@@ -1,6 +1,7 @@
 package com.jamiltonquintero.user.model.entity;
 
 import com.jamiltonquintero.company.model.Company;
+import com.jamiltonquintero.companyconfiguration.reward.model.entity.Reward;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,6 +22,7 @@ public class User {
     private String identification;
     private Integer totalPoints;
     private List<Company> companies;
+    private List<Reward> rewards;
 
     public User(Long id, String firstName, String lastName, String email, String identification, Integer totalPoints) {
         this.id = id;
@@ -48,4 +50,17 @@ public class User {
         this.identification = identification;
     }
 
+    public User(Long id, String firstName, String lastName, String email, String identification, Integer totalPoints, List<Company> companies) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.identification = identification;
+        this.totalPoints = totalPoints;
+        this.companies = companies;
+    }
+
+    public void addRewards(List<Reward> rewards){
+        this.rewards.addAll(rewards);
+    }
 }

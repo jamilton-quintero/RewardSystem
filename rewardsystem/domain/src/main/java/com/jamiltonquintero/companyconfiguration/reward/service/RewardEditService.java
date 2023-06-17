@@ -39,7 +39,8 @@ public class RewardEditService {
 
         return  new Reward(lastReward.getId(),
                 newReward.getPointsToRedeem(),
-                newReward.getAvailableRewards(),
+                newReward.getName(),
+                true,
                 newReward.getDailyPointsLimit(),
                 newReward.getWeeklyPointsLimit(),
                 newReward.getPointsAccumulatedMessage(),

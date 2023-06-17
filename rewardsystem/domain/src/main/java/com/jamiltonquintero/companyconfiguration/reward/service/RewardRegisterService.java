@@ -17,7 +17,7 @@ public class RewardRegisterService {
         this.companyDao = companyDao;
     }
 
-    public Long execute(RewardToCreate companyConfiguration, Long companyId){
+    public Long execute(RewardToCreate rewardToCreate, Long companyId){
 
         Optional<Company> company = companyDao.getById(companyId);
 
@@ -25,8 +25,9 @@ public class RewardRegisterService {
             throw new RuntimeException("");
         }
 
-        companyConfiguration.addCompany(company.get());
+        rewardToCreate.addCompany(company.get());
 
-        return rewardRepository.create(companyConfiguration);
+        return rewardRepository.create(rewardToCreate);
+
     }
 }

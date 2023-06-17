@@ -13,7 +13,7 @@ public class RewardFactory {
 
         return new RewardToCreate(
                 command.getPointsToRedeem(),
-                command.getAvailableRewards(),
+                command.getName(),
                 command.getDailyPointsLimit(),
                 command.getWeeklyPointsLimit(),
                 command.getPointsAccumulatedMessage(),
@@ -26,7 +26,8 @@ public class RewardFactory {
 
         return new Reward(
                 command.getPointsToRedeem(),
-                command.getAvailableRewards(),
+                command.getName(),
+                true,
                 command.getDailyPointsLimit(),
                 command.getWeeklyPointsLimit(),
                 command.getPointsAccumulatedMessage(),
